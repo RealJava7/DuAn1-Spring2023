@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 import model.PhieuGiamGia;
 import model.PhieuGiamGiaChiTiet;
 import repository.PhieuGiamGiaRepository;
-import service.QuanLyPhieuGiamGiaService;
-import service.impl.QuanLyPhieuGiamGiaServiceImpl;
+import service.impl.PhieuGiamGiaServiceImpl;
 import viewmodel.PhieuGiamGiaResponse;
+import service.PhieuGiamGiaService;
 
 /**
  *
@@ -21,7 +21,7 @@ public class ThemPhieuGiamGia extends javax.swing.JDialog {
 
     PhieuGiamGiaChiTiet phieuGiamGiaChiTiet;
     PhieuGiamGia phieuGiamGia;
-    QuanLyPhieuGiamGiaService qs;
+    PhieuGiamGiaService qs;
 
     public ThemPhieuGiamGia(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -29,7 +29,7 @@ public class ThemPhieuGiamGia extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         phieuGiamGiaChiTiet = new PhieuGiamGiaChiTiet();
         phieuGiamGia = new PhieuGiamGia();
-        qs = new QuanLyPhieuGiamGiaServiceImpl();
+        qs = new PhieuGiamGiaServiceImpl();
 
     }
 

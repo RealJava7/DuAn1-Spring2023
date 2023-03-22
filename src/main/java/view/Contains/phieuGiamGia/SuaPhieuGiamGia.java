@@ -9,15 +9,15 @@ import javax.swing.JOptionPane;
 import model.PhieuGiamGia;
 import model.PhieuGiamGiaChiTiet;
 import repository.PhieuGiamGiaRepository;
-import service.QuanLyPhieuGiamGiaService;
-import service.impl.QuanLyPhieuGiamGiaServiceImpl;
+import service.impl.PhieuGiamGiaServiceImpl;
 import viewmodel.PhieuGiamGiaResponse;
+import service.PhieuGiamGiaService;
 
 public class SuaPhieuGiamGia extends javax.swing.JFrame {
 
     PhieuGiamGiaChiTiet phieuGiamGiaChiTiet;
     PhieuGiamGia phieuGiamGia;
-    QuanLyPhieuGiamGiaService qs;
+    PhieuGiamGiaService qs;
     PhieuGiamGiaResponse phieuGiamGiaResponse;
     int id;
 
@@ -27,7 +27,7 @@ public class SuaPhieuGiamGia extends javax.swing.JFrame {
         phieuGiamGiaChiTiet = new PhieuGiamGiaChiTiet();
         phieuGiamGia = new PhieuGiamGia();
         phieuGiamGiaResponse = new PhieuGiamGiaResponse();
-        qs = new QuanLyPhieuGiamGiaServiceImpl();
+        qs = new PhieuGiamGiaServiceImpl();
         loadForm(phieu);
         id = phieu.getId();
     }
@@ -268,17 +268,26 @@ public class SuaPhieuGiamGia extends javax.swing.JFrame {
         int luot = 0;
         String luotDung = txtLuotDung.getText();
         luot = Integer.parseInt(luotDung);
-        phieuGiamGiaChiTiet.setNgayBatDau(phieuGiamGiaResponse.getNgayBatDau());
-        phieuGiamGiaChiTiet.setNgayKetThuc(phieuGiamGiaResponse.getNgayKetThuc());
-        phieuGiamGiaChiTiet.setLuotSuDung(phieuGiamGiaResponse.getLuotSuDung());
-        phieuGiamGiaChiTiet.setDieuKien(phieuGiamGiaResponse.getDieuKien());
-        phieuGiamGiaChiTiet.setGiaTri(phieuGiamGiaResponse.getGiaTri());
-        phieuGiamGiaChiTiet.setTrangThai(phieuGiamGiaResponse.getTrangThai());
-        phieuGiamGia.setMaPhieu(phieuGiamGiaResponse.getMaPhieu());
-        phieuGiamGia.setTenPhieu(phieuGiamGiaResponse.getTenPhieu());
-        phieuGiamGia.setId(phieuGiamGiaResponse.getId());
-        phieuGiamGia.setPhieuGiamGiaChiTiet(phieuGiamGiaChiTiet);
-
+        phieuGiamGiaResponse.setNgayBatDau(LocalDate.parse(batDau));
+        phieuGiamGiaResponse.setNgayKetThuc(LocalDate.parse(ketThuc));
+        phieuGiamGiaResponse.setLuotSuDung(luot);
+        phieuGiamGiaResponse.setDieuKien(Long.parseLong(txtGiaTriToiThieu.getText()));
+        phieuGiamGiaResponse.setGiaTri(Float.valueOf(txtMucGiam.getText()));
+        phieuGiamGiaResponse.setTrangThai(1);
+        phieuGiamGiaResponse.setMaPhieu(txtMaVoucher.getText());
+        phieuGiamGiaResponse.setTenPhieu(txtTenPhieu.getText());
+        phieuGiamGiaResponse.setId(id);
+        System.out.println(phieuGiamGiaResponse);
+//        phieuGiamGiaChiTiet.setNgayKetThuc(phieuGiamGiaResponse.getNgayKetThuc());
+//        phieuGiamGiaChiTiet.setLuotSuDung(phieuGiamGiaResponse.getLuotSuDung());
+//        phieuGiamGiaChiTiet.setDieuKien(phieuGiamGiaResponse.getDieuKien());
+//        phieuGiamGiaChiTiet.setGiaTri(phieuGiamGiaResponse.getGiaTri());
+//        phieuGiamGiaChiTiet.setTrangThai(phieuGiamGiaResponse.getTrangThai());
+//        phieuGiamGia.setMaPhieu(phieuGiamGiaResponse.getMaPhieu());
+//        phieuGiamGia.setTenPhieu(phieuGiamGiaResponse.getTenPhieu());
+//        phieuGiamGia.setId(phieuGiamGiaResponse.getId());
+//        phieuGiamGia.setPhieuGiamGiaChiTiet(phieuGiamGiaChiTiet);
+//
         JOptionPane.showMessageDialog(this, qs.update(phieuGiamGiaResponse));
         dispose();
 

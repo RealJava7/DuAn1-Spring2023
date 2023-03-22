@@ -4,7 +4,7 @@ import java.util.List;
 import model.PhieuGiamGia;
 import viewmodel.PhieuGiamGiaResponse;
 
-public interface QuanLyPhieuGiamGiaService {
+public interface PhieuGiamGiaService {
 
     List<PhieuGiamGiaResponse> getall();
 

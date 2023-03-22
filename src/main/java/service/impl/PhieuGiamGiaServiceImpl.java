@@ -3,14 +3,14 @@ package service.impl;
 import java.util.List;
 import model.PhieuGiamGia;
 import repository.PhieuGiamGiaRepository;
-import service.QuanLyPhieuGiamGiaService;
 import viewmodel.PhieuGiamGiaResponse;
+import service.PhieuGiamGiaService;
 
 /**
  *
  * @author DELL
  */
-public class QuanLyPhieuGiamGiaServiceImpl implements QuanLyPhieuGiamGiaService {
+public class PhieuGiamGiaServiceImpl implements PhieuGiamGiaService {
 
     PhieuGiamGiaRepository pr = new PhieuGiamGiaRepository();
 
@@ -30,12 +30,12 @@ public class QuanLyPhieuGiamGiaServiceImpl implements QuanLyPhieuGiamGiaService 
     @Override
     public String update(PhieuGiamGiaResponse phieu) {
   if (pr.update(phieu)==true) {
-            return "Thêm thành công";
+            return "Sửa thành công";
         }
-        return "Thêm thất bại";
+        return "sửa thất bại";
     }
     public static void main(String[] args) {
-        QuanLyPhieuGiamGiaService qs = new QuanLyPhieuGiamGiaServiceImpl();
+        PhieuGiamGiaService qs = new PhieuGiamGiaServiceImpl();
         System.out.println(qs.getall());
     }
 }
