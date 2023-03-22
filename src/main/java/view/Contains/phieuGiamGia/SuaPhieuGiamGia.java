@@ -44,6 +44,20 @@ public class SuaPhieuGiamGia extends javax.swing.JFrame {
 
     }
 
+    public int getStatus(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+        LocalDate homNay = LocalDate.now();
+
+        if (homNay.compareTo(ngayBatDau) >= 0 && homNay.compareTo(ngayKetThuc) < 0) {
+            return 0;
+        } else if (homNay.compareTo(ngayBatDau) < 0) {
+            return 2;
+        } else if (homNay.compareTo(ngayBatDau) > 0 && homNay.compareTo(ngayKetThuc) >= 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -266,14 +280,17 @@ public class SuaPhieuGiamGia extends javax.swing.JFrame {
         String batDau = sdf.format(txtNgayBatDau.getDate());
         String ketThuc = sdf.format(txtNgayKetThuc.getDate());
         int luot = 0;
+        int trangThai = 0;
         String luotDung = txtLuotDung.getText();
         luot = Integer.parseInt(luotDung);
         phieuGiamGiaResponse.setNgayBatDau(LocalDate.parse(batDau));
         phieuGiamGiaResponse.setNgayKetThuc(LocalDate.parse(ketThuc));
+        trangThai = getStatus(LocalDate.parse(batDau), LocalDate.parse(ketThuc));
+
         phieuGiamGiaResponse.setLuotSuDung(luot);
         phieuGiamGiaResponse.setDieuKien(Long.parseLong(txtGiaTriToiThieu.getText()));
         phieuGiamGiaResponse.setGiaTri(Float.valueOf(txtMucGiam.getText()));
-        phieuGiamGiaResponse.setTrangThai(1);
+        phieuGiamGiaResponse.setTrangThai(trangThai);
         phieuGiamGiaResponse.setMaPhieu(txtMaVoucher.getText());
         phieuGiamGiaResponse.setTenPhieu(txtTenPhieu.getText());
         phieuGiamGiaResponse.setId(id);
@@ -293,41 +310,6 @@ public class SuaPhieuGiamGia extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(SuaPhieuGiamGia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(SuaPhieuGiamGia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(SuaPhieuGiamGia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(SuaPhieuGiamGia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new SuaPhieuGiamGia().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuy;

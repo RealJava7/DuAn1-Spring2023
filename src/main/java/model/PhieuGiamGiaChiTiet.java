@@ -42,4 +42,5 @@ public class PhieuGiamGiaChiTiet {
     
     @Column(name = "TrangThai")
     private int trangThai;
+    
 }

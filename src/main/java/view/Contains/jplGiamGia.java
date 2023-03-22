@@ -308,6 +308,7 @@ public class jplGiamGia extends javax.swing.JPanel {
         rdbDangDienRa.setText("Đang diễn ra");
 
         rdbDaKetThuc.setBackground(new java.awt.Color(246, 246, 246));
+        buttonGroup1.add(rdbDaKetThuc);
         rdbDaKetThuc.setText("Đã kết thúc");
 
         tblMaGiamGia.setModel(new javax.swing.table.DefaultTableModel(
@@ -478,7 +479,8 @@ public class jplGiamGia extends javax.swing.JPanel {
 
     private void btnTaoPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoPhieuActionPerformed
         // TODO add your handling code here:
-        new ThemPhieuGiamGia(null, true).setVisible(true);
+        loadTable(qs.getall());
+        new ThemPhieuGiamGia().setVisible(true);
         loadTable(qs.getall());
     }//GEN-LAST:event_btnTaoPhieuActionPerformed
 
@@ -486,9 +488,9 @@ public class jplGiamGia extends javax.swing.JPanel {
         // TODO add your handling code here:
         int index = tblMaGiamGia.getSelectedRow();
         PhieuGiamGiaResponse phieu = qs.getall().get(index);
-       new SuaPhieuGiamGia(phieu).setVisible(true);
-
-
+        loadTable(qs.getall());
+        new SuaPhieuGiamGia(phieu).setVisible(true);
+        loadTable(qs.getall());
     }//GEN-LAST:event_tblMaGiamGiaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
